@@ -23,7 +23,7 @@ and overall security posture.
 * Miscellaneous
 
 
-#### Areas of coverage for Post Cutover Assessments
+### Areas of coverage for Post Cutover Assessments
 
 * Possible Compromise
 * Inbound, Outbound, and Internal Threat Tuning
