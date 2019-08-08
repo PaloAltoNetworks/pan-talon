@@ -8,30 +8,25 @@ intent of the reports is to query live data from the platform to discover where 
 and overall security posture.   
 
 
-### 11 distinct areas the reports cover for full threat assessment packages
+### Areas of coverage for Full Assessments
 
+* Logging and Alerting
+* System Hardening
+* Misconfigurations
+* SSL Percentage
 * Possible Compromise
+* URL Filtering
+* Brute Force 
+* File Blocking
 * Inbound, Outbound, and Internal Threat Tuning
 * Inbound, Outbound, and Internal Rule Tuning
-* Oubound Non-web based applications
-* SSL Percentage
-* Misconfigurations
 * Miscellaneous
 
 
-#### 8 distinct areas for post cutover threat assessments
+#### Areas of coverage for Post Cutover Assessments
 
 * Possible Compromise
 * Inbound, Outbound, and Internal Threat Tuning
 * Inbound, Outbound, and Internal Rule Tuning
-* Oubound Non-web based applications
-
-##### Operational Reports
-
-Operational reports are based on time (daily, weekly, and monthly)
-
-Areas covered
-* Possible Compromise
-* Threats
-
+* Misconfigurations
 
