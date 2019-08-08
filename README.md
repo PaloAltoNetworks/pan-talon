@@ -26,6 +26,8 @@ and overall security posture.
 ### Areas of coverage for Post Cutover Assessments
 
 * Possible Compromise
+* SSL Percentage
+* Brute Force
 * Inbound, Outbound, and Internal Threat Tuning
 * Inbound, Outbound, and Internal Rule Tuning
 * Misconfigurations
