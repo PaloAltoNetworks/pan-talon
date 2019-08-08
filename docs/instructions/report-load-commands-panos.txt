@@ -1,0 +1,27 @@
+
+# Load Config Partial commands to install assessment reports
+# Make sure you have identified the internet zone and performed a search and replace  - searching for "INTERNET" and replacing with customer internet zone
+# Make sure you have identified exlusion networks from the internet i.e. space in the internet that belongs to the customer and can be exluded from reporting
+# For more information you can read the methodology for modifying the reports to meet your needs
+#
+# Load a sample email profile called "Sample_Email_Profile"
+# Alternatively you can modify the xml file searching for "Sample_Email_Profile" and replacing with an existing email profile the customer is able to access
+# You can find the location of the email profiles under Device -> Server Profiles -> Email Profile
+#
+load config partial from Panos-8-Assessment-Reports.xml from-xpath /config/shared/log-settings/email to-xpath /config/shared/log-settings/email mode merge
+#
+# Load the reports. There are currently 102 reports in the assessment xml file.   The amount of reports is subject to change.
+#
+load config partial from Panos-8-Assessment-Reports.xml from-xpath /config/shared/reports to-xpath /config/shared/reports mode merge 
+#
+# Load the report groups.   This will bundle the reports to ease the assessment process.   
+#
+load config partial from Panos-8-Assessment-Reports.xml from-xpath /config/shared/report-group to-xpath /config/shared/report-group mode merge 
+#
+# Load the email scheduler.  The email scheduler will email the report groups to the specified email profile.   This is the preferred method of transport.   
+# If customer does not permit, then you will have to export the reports manually.
+# A script "mactpan" or "wintpan" exist in the scirpts folder that will make life easier for renaming the reports to the title of each report.
+#
+load config partial from Panos-8-Assessment-Reports.xml from-xpath /config/shared/email-scheduler to-xpath /config/shared/email-scheduler mode merge 
+#
+# End

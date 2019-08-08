@@ -1,0 +1,953 @@
+<?xml version="1.0"?>
+<config version="7.0.0" urldb="paloaltonetworks">
+  <mgt-config>
+    <users>
+      <entry name="admin">
+        <phash>fnRL/G5lXVMug</phash>
+        <permissions>
+          <role-based>
+            <superuser>yes</superuser>
+          </role-based>
+        </permissions>
+      </entry>
+    </users>
+  </mgt-config>
+  <shared>
+    <application/>
+    <application-group/>
+    <service/>
+    <service-group/>
+    <botnet>
+      <configuration>
+        <http>
+          <dynamic-dns>
+            <enabled>yes</enabled>
+            <threshold>5</threshold>
+          </dynamic-dns>
+          <malware-sites>
+            <enabled>yes</enabled>
+            <threshold>5</threshold>
+          </malware-sites>
+          <recent-domains>
+            <enabled>yes</enabled>
+            <threshold>5</threshold>
+          </recent-domains>
+          <ip-domains>
+            <enabled>yes</enabled>
+            <threshold>10</threshold>
+          </ip-domains>
+          <executables-from-unknown-sites>
+            <enabled>yes</enabled>
+            <threshold>5</threshold>
+          </executables-from-unknown-sites>
+        </http>
+        <other-applications>
+          <irc>yes</irc>
+        </other-applications>
+        <unknown-applications>
+          <unknown-tcp>
+            <destinations-per-hour>10</destinations-per-hour>
+            <sessions-per-hour>10</sessions-per-hour>
+            <session-length>
+              <maximum-bytes>100</maximum-bytes>
+              <minimum-bytes>50</minimum-bytes>
+            </session-length>
+          </unknown-tcp>
+          <unknown-udp>
+            <destinations-per-hour>10</destinations-per-hour>
+            <sessions-per-hour>10</sessions-per-hour>
+            <session-length>
+              <maximum-bytes>100</maximum-bytes>
+              <minimum-bytes>50</minimum-bytes>
+            </session-length>
+          </unknown-udp>
+        </unknown-applications>
+      </configuration>
+      <report>
+        <topn>100</topn>
+        <scheduled>yes</scheduled>
+      </report>
+    </botnet>
+    <log-settings>
+      <email>
+        <entry name="Sample_Email_Profile">
+          <server>
+            <entry name="sample">
+              <display-name>sample</display-name>
+              <gateway>gate.gaetway.local</gateway>
+              <from>sample@from.com</from>
+              <to>sample@to.com</to>
+            </entry>
+          </server>
+        </entry>
+      </email>
+    </log-settings>
+    <reports>
+      <entry name="Daily Inbound Allowed Threats">
+        <period>last-calendar-day</period>
+        <topn>500</topn>
+        <topm>50</topm>
+        <caption>Daily Inbound Allowed Threats</caption>
+        <query>((zone.src eq INTERNET) and (zone.dst neq INTERNET) and (addr.src notin 127.0.0.1) and (addr.src notin 127.0.0.2) and (addr.src notin 127.0.0.3)) and (app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable) and ((action eq alert) or (action eq allow)) and ((threat-type eq virus) or (((threat-type eq spyware) or (threat-type eq vulnerability)) and (severity geq medium)))</query>
+        <frequency>daily</frequency>
+        <type>
+          <threat>
+            <sortby>repeatcnt</sortby>
+            <group-by>rule</group-by>
+            <aggregate-by>
+              <member>threatid</member>
+              <member>category-of-threatid</member>
+              <member>subtype</member>
+              <member>app</member>
+              <member>direction</member>
+              <member>severity</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </threat>
+        </type>
+      </entry>
+      <entry name="Daily Inbound Denied Threats">
+        <period>last-calendar-day</period>
+        <topn>500</topn>
+        <topm>50</topm>
+        <caption>Daily Inbound Denied Threats</caption>
+        <query>((zone.src eq INTERNET) and (zone.dst neq INTERNET) and (addr.src notin 127.0.0.1) and (addr.src notin 127.0.0.2) and (addr.src notin 127.0.0.3)) and (app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable) and ((action neq alert) and (action neq allow)) and ((threat-type eq virus) or (((threat-type eq spyware) or (threat-type eq vulnerability)) and (severity geq medium)))</query>
+        <frequency>daily</frequency>
+        <type>
+          <threat>
+            <sortby>repeatcnt</sortby>
+            <group-by>rule</group-by>
+            <aggregate-by>
+              <member>threatid</member>
+              <member>category-of-threatid</member>
+              <member>subtype</member>
+              <member>app</member>
+              <member>direction</member>
+              <member>severity</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </threat>
+        </type>
+      </entry>
+      <entry name="Weekly Inbound Allowed Threats">
+        <period>last-7-calendar-days</period>
+        <topn>500</topn>
+        <topm>50</topm>
+        <caption>Weekly Inbound Allowed Threats</caption>
+        <query>((zone.src eq INTERNET) and (zone.dst neq INTERNET) and (addr.src notin 127.0.0.1) and (addr.src notin 127.0.0.2) and (addr.src notin 127.0.0.3)) and (app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable) and ((action eq alert) or (action eq allow)) and ((threat-type eq virus) or (((threat-type eq spyware) or (threat-type eq vulnerability)) and (severity geq medium)))</query>
+        <frequency>daily</frequency>
+        <type>
+          <threat>
+            <sortby>repeatcnt</sortby>
+            <group-by>rule</group-by>
+            <aggregate-by>
+              <member>threatid</member>
+              <member>category-of-threatid</member>
+              <member>subtype</member>
+              <member>app</member>
+              <member>direction</member>
+              <member>severity</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </threat>
+        </type>
+      </entry>
+      <entry name="Daily Internal Allowd Threats">
+        <period>last-calendar-day</period>
+        <topn>500</topn>
+        <topm>10</topm>
+        <caption>Daily Internal Allowd Threats</caption>
+        <query>(((zone.src neq INTERNET) and (zone.dst neq INTERNET)) or ((zone.src neq INTERNET) and (zone.dst eq INTERNET) and ((addr.dst in 127.0.0.1) or (addr.dst in 127.0.0.2) or (addr.dst in 127.0.0.3))) or ((zone.src eq INTERNET)  and (zone.dst neq INTERNET) and ((addr.src in 127.0.0.1) or (addr.src in 127.0.0.2) or (addr.src in 127.0.0.3)))) and (app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable) and ((action eq alert) or (action eq allow)) and ((threat-type eq virus) or (threat-type eq wildfire-virus) or (((threat-type eq spyware) or (threat-type eq vulnerability)) and (severity geq medium)))</query>
+        <frequency>daily</frequency>
+        <type>
+          <threat>
+            <sortby>repeatcnt</sortby>
+            <aggregate-by>
+              <member>threatid</member>
+              <member>category-of-threatid</member>
+              <member>subtype</member>
+              <member>app</member>
+              <member>direction</member>
+              <member>severity</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </threat>
+        </type>
+      </entry>
+      <entry name="Weekly Internal Allowed Threats">
+        <period>last-7-calendar-days</period>
+        <topn>500</topn>
+        <topm>10</topm>
+        <caption>Weekly Internal Allowed Threats</caption>
+        <query>(((zone.src neq INTERNET) and (zone.dst neq INTERNET)) or ((zone.src neq INTERNET) and (zone.dst eq INTERNET) and ((addr.dst in 127.0.0.1) or (addr.dst in 127.0.0.2) or (addr.dst in 127.0.0.3))) or ((zone.src eq INTERNET)  and (zone.dst neq INTERNET) and ((addr.src in 127.0.0.1) or (addr.src in 127.0.0.2) or (addr.src in 127.0.0.3)))) and (app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable) and ((action eq alert) or (action eq allow)) and ((threat-type eq virus) or (threat-type eq wildfire-virus) or (((threat-type eq spyware) or (threat-type eq vulnerability)) and (severity geq medium)))</query>
+        <frequency>daily</frequency>
+        <type>
+          <threat>
+            <sortby>repeatcnt</sortby>
+            <aggregate-by>
+              <member>threatid</member>
+              <member>category-of-threatid</member>
+              <member>subtype</member>
+              <member>app</member>
+              <member>direction</member>
+              <member>severity</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </threat>
+        </type>
+      </entry>
+      <entry name="Daily Outbound Allowed Threats">
+        <period>last-calendar-day</period>
+        <topn>500</topn>
+        <topm>50</topm>
+        <caption>Daily Outbound Allowed Threats</caption>
+        <query>((zone.src neq INTERNET) and (zone.dst eq INTERNET) and (addr.dst notin 127.0.0.1) and (addr.dst notin 127.0.0.2) and (addr.dst notin 127.0.0.3)) and (app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable) and ((action eq alert) or (action eq allow)) and ((threat-type eq virus) or (((threat-type eq spyware) or (threat-type eq vulnerability)) and (severity geq medium)))</query>
+        <frequency>daily</frequency>
+        <type>
+          <threat>
+            <sortby>repeatcnt</sortby>
+            <group-by>rule</group-by>
+            <aggregate-by>
+              <member>from</member>
+              <member>src</member>
+              <member>srcuser</member>
+              <member>dstloc</member>
+              <member>threatid</member>
+              <member>direction</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </threat>
+        </type>
+      </entry>
+      <entry name="Weekly Outbound Allowed Threats">
+        <period>last-7-calendar-days</period>
+        <topn>500</topn>
+        <topm>50</topm>
+        <caption>Weekly Outbound Allowed Threats</caption>
+        <query>((zone.src neq INTERNET) and (zone.dst eq INTERNET) and (addr.dst notin 127.0.0.1) and (addr.dst notin 127.0.0.2) and (addr.dst notin 127.0.0.3)) and (app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable) and ((action eq alert) or (action eq allow)) and ((threat-type eq virus) or (((threat-type eq spyware) or (threat-type eq vulnerability)) and (severity geq medium)))</query>
+        <frequency>daily</frequency>
+        <type>
+          <threat>
+            <sortby>repeatcnt</sortby>
+            <group-by>rule</group-by>
+            <aggregate-by>
+              <member>from</member>
+              <member>src</member>
+              <member>srcuser</member>
+              <member>dstloc</member>
+              <member>threatid</member>
+              <member>direction</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </threat>
+        </type>
+      </entry>
+      <entry name="Daily Outbound Denied Threats">
+        <period>last-calendar-day</period>
+        <topn>500</topn>
+        <topm>50</topm>
+        <caption>Daily Outbound Denied Threats</caption>
+        <query>((zone.src neq INTERNET) and (zone.dst eq INTERNET) and (addr.dst notin 127.0.0.1) and (addr.dst notin 127.0.0.2) and (addr.dst notin 127.0.0.3)) and (app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable) and ((action neq alert) and (action neq allow)) and ((threat-type eq virus) or (((threat-type eq spyware) or (threat-type eq vulnerability)) and (severity geq medium)))</query>
+        <frequency>daily</frequency>
+        <type>
+          <threat>
+            <sortby>repeatcnt</sortby>
+            <group-by>rule</group-by>
+            <aggregate-by>
+              <member>from</member>
+              <member>src</member>
+              <member>srcuser</member>
+              <member>dstloc</member>
+              <member>threatid</member>
+              <member>direction</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </threat>
+        </type>
+      </entry>
+      <entry name="Daily Internal Denied Threats">
+        <period>last-calendar-day</period>
+        <topn>500</topn>
+        <topm>50</topm>
+        <caption>Daily Internal Denied Threats</caption>
+        <query>(((zone.src neq INTERNET) and (zone.dst neq INTERNET)) or ((zone.src neq INTERNET) and (zone.dst eq INTERNET) and ((addr.dst in 127.0.0.1) or (addr.dst in 127.0.0.2) or (addr.dst in 127.0.0.3))) or ((zone.src eq INTERNET)  and (zone.dst neq INTERNET) and ((addr.src in 127.0.0.1) or (addr.src in 127.0.0.2) or (addr.src in 127.0.0.3)))) and (app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable) and ((action neq alert) and (action neq allow)) and ((threat-type eq virus) or (threat-type eq wildfire-virus) or (((threat-type eq spyware) or (threat-type eq vulnerability)) and (severity geq medium)))</query>
+        <frequency>daily</frequency>
+        <type>
+          <threat>
+            <sortby>repeatcnt</sortby>
+            <group-by>severity</group-by>
+            <aggregate-by>
+              <member>from</member>
+              <member>src</member>
+              <member>srcuser</member>
+              <member>dstloc</member>
+              <member>threatid</member>
+              <member>rule</member>
+              <member>direction</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </threat>
+        </type>
+      </entry>
+      <entry name="Weekly Internal Denied Threats">
+        <period>last-7-calendar-days</period>
+        <topn>500</topn>
+        <topm>50</topm>
+        <caption>Weekly Internal Denied Threats</caption>
+        <query>(((zone.src neq INTERNET) and (zone.dst neq INTERNET)) or ((zone.src neq INTERNET) and (zone.dst eq INTERNET) and ((addr.dst in 127.0.0.1) or (addr.dst in 127.0.0.2) or (addr.dst in 127.0.0.3))) or ((zone.src eq INTERNET)  and (zone.dst neq INTERNET) and ((addr.src in 127.0.0.1) or (addr.src in 127.0.0.2) or (addr.src in 127.0.0.3)))) and (app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable) and ((action neq alert) and (action neq allow)) and ((threat-type eq virus) or (threat-type eq wildfire-virus) or (((threat-type eq spyware) or (threat-type eq vulnerability)) and (severity geq medium)))</query>
+        <frequency>daily</frequency>
+        <type>
+          <threat>
+            <sortby>repeatcnt</sortby>
+            <group-by>severity</group-by>
+            <aggregate-by>
+              <member>from</member>
+              <member>src</member>
+              <member>srcuser</member>
+              <member>dstloc</member>
+              <member>threatid</member>
+              <member>rule</member>
+              <member>direction</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </threat>
+        </type>
+      </entry>
+      <entry name="Weekly Inbound Denied Threats">
+        <period>last-7-calendar-days</period>
+        <topn>500</topn>
+        <topm>50</topm>
+        <caption>Weekly Inbound Denied Threats</caption>
+        <query>((zone.src eq INTERNET) and (zone.dst neq INTERNET) and (addr.src notin 127.0.0.1) and (addr.src notin 127.0.0.2) and (addr.src notin 127.0.0.3)) and (app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable) and ((action neq alert) and (action neq allow)) and ((threat-type eq virus) or (((threat-type eq spyware) or (threat-type eq vulnerability)) and (severity geq medium)))</query>
+        <frequency>daily</frequency>
+        <type>
+          <threat>
+            <sortby>repeatcnt</sortby>
+            <group-by>rule</group-by>
+            <aggregate-by>
+              <member>from</member>
+              <member>src</member>
+              <member>srcuser</member>
+              <member>dstloc</member>
+              <member>threatid</member>
+              <member>direction</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </threat>
+        </type>
+      </entry>
+      <entry name="Weekly Outbound Denied Threats">
+        <period>last-7-calendar-days</period>
+        <topn>500</topn>
+        <topm>50</topm>
+        <caption>Weekly Outbound Denied Threats</caption>
+        <query>((zone.src neq INTERNET) and (zone.dst eq INTERNET) and (addr.dst notin 127.0.0.1) and (addr.dst notin 127.0.0.2) and (addr.dst notin 127.0.0.3)) and (app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable) and ((action neq alert) and (action neq allow)) and ((threat-type eq virus) or (((threat-type eq spyware) or (threat-type eq vulnerability)) and (severity geq medium)))</query>
+        <frequency>daily</frequency>
+        <type>
+          <threat>
+            <sortby>repeatcnt</sortby>
+            <group-by>rule</group-by>
+            <aggregate-by>
+              <member>from</member>
+              <member>src</member>
+              <member>srcuser</member>
+              <member>dstloc</member>
+              <member>threatid</member>
+              <member>direction</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </threat>
+        </type>
+      </entry>
+      <entry name="Clients sinkholed Daily">
+        <type>
+          <traffic>
+            <aggregate-by>
+              <member>from</member>
+              <member>src</member>
+              <member>srcuser</member>
+              <member>device_name</member>
+              <member>vsys</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </traffic>
+        </type>
+        <period>last-calendar-day</period>
+        <topn>10</topn>
+        <topm>10</topm>
+        <caption>Clients sinkholed Daily</caption>
+        <query>(addr.dst in 72.5.65.111)</query>
+      </entry>
+      <entry name="Clients sinkholed Trending">
+        <type>
+          <traffic>
+            <aggregate-by>
+              <member>from</member>
+              <member>src</member>
+              <member>srcuser</member>
+              <member>device_name</member>
+              <member>vsys_name</member>
+            </aggregate-by>
+          </traffic>
+        </type>
+        <period>last-7-calendar-days</period>
+        <topn>10</topn>
+        <topm>10</topm>
+        <caption>Clients sinkholed Trending</caption>
+        <query>(addr.dst in 72.5.65.111)</query>
+      </entry>
+      <entry name="Daily Malicious URL Cats">
+        <type>
+          <url>
+            <sortby>repeatcnt</sortby>
+            <aggregate-by>
+              <member>srcuser</member>
+              <member>from</member>
+              <member>xff</member>
+              <member>category</member>
+              <member>action</member>
+            </aggregate-by>
+          </url>
+        </type>
+        <period>last-calendar-day</period>
+        <topn>500</topn>
+        <topm>10</topm>
+        <caption>Daily Malicious URL Cats</caption>
+        <query>(category eq command-and-control) or (category eq malware) or (category eq phishing)</query>
+      </entry>
+      <entry name="Weekly Malicious URL Cats">
+        <type>
+          <url>
+            <sortby>repeatcnt</sortby>
+            <aggregate-by>
+              <member>srcuser</member>
+              <member>from</member>
+              <member>xff</member>
+              <member>category</member>
+              <member>action</member>
+            </aggregate-by>
+          </url>
+        </type>
+        <period>last-7-calendar-days</period>
+        <topn>500</topn>
+        <topm>10</topm>
+        <caption>Weekly Malicious URL Cats</caption>
+        <query>(category eq command-and-control) or (category eq malware) or (category eq phishing)</query>
+      </entry>
+      <entry name="Daily Potential URL Cats">
+        <type>
+          <url>
+            <sortby>repeatcnt</sortby>
+            <aggregate-by>
+              <member>src</member>
+              <member>srcuser</member>
+              <member>from</member>
+              <member>xff</member>
+              <member>category</member>
+              <member>action</member>
+            </aggregate-by>
+          </url>
+        </type>
+        <period>last-calendar-day</period>
+        <topn>500</topn>
+        <topm>50</topm>
+        <caption>Daily Potential URL Cats</caption>
+        <query>(category eq dynamic-dns) or (category eq parked) or (category eq unknown)</query>
+      </entry>
+      <entry name="Weekly Potential URL Cats">
+        <type>
+          <url>
+            <sortby>repeatcnt</sortby>
+            <aggregate-by>
+              <member>src</member>
+              <member>srcuser</member>
+              <member>from</member>
+              <member>xff</member>
+              <member>category</member>
+              <member>action</member>
+            </aggregate-by>
+          </url>
+        </type>
+        <period>last-7-calendar-days</period>
+        <topn>500</topn>
+        <topm>50</topm>
+        <caption>Weekly Potential URL Cats</caption>
+        <query>(category eq dynamic-dns) or (category eq parked) or (category eq unknown)</query>
+      </entry>
+      <entry name="Highest Vol Rules by Bytes">
+        <type>
+          <traffic>
+            <sortby>bytes</sortby>
+            <aggregate-by>
+              <member>rule</member>
+            </aggregate-by>
+            <values>
+              <member>bytes</member>
+              <member>repeatcnt</member>
+            </values>
+          </traffic>
+        </type>
+        <period>last-calendar-month</period>
+        <topn>500</topn>
+        <topm>10</topm>
+        <caption>Highest Vol Rules by Bytes</caption>
+        <query>(app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable)</query>
+      </entry>
+      <entry name="Least Vol Rules by Bytes">
+        <type>
+          <traffic>
+            <sortby>bytes</sortby>
+            <aggregate-by>
+              <member>rule</member>
+            </aggregate-by>
+            <values>
+              <member>bytes</member>
+              <member>repeatcnt</member>
+            </values>
+          </traffic>
+        </type>
+        <period>last-calendar-month</period>
+        <topn>500</topn>
+        <topm>10</topm>
+        <caption>Least Vol Rules by Bytes</caption>
+        <query>(app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable) and (bytes leq 10000)</query>
+      </entry>
+      <entry name="Highest Vol Rules by Sessions">
+        <type>
+          <traffic>
+            <sortby>repeatcnt</sortby>
+            <aggregate-by>
+              <member>rule</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+              <member>bytes</member>
+            </values>
+          </traffic>
+        </type>
+        <period>last-calendar-month</period>
+        <topn>500</topn>
+        <topm>10</topm>
+        <caption>Highest Vol Rules by Sessions</caption>
+        <query>(app neq insufficient-data) and (app neq incomplete) and (app neq not-applicable)</query>
+      </entry>
+      <entry name="Rule Usage Monthly Stats">
+        <type>
+          <traffic>
+            <aggregate-by>
+              <member>rule</member>
+            </aggregate-by>
+            <values>
+              <member>repeatcnt</member>
+            </values>
+          </traffic>
+        </type>
+        <period>last-15-minutes</period>
+        <topn>10</topn>
+        <topm>10</topm>
+        <caption>Rule Usage Monthly Stats</caption>
+      </entry>
+    </reports>
+    <report-group>
+      <entry name="Daily Enterprise Reports">
+        <custom-widget>
+          <entry name="1">
+            <custom-report>Clients sinkholed Daily</custom-report>
+          </entry>
+          <entry name="2">
+            <custom-report>Daily Malicious URL Cats</custom-report>
+          </entry>
+          <entry name="3">
+            <custom-report>Daily Potential URL Cats</custom-report>
+          </entry>
+        </custom-widget>
+        <title-page>yes</title-page>
+        <variable>
+          <entry name="title">
+            <value>Daily Potential Compromise Enterprise Reports</value>
+          </entry>
+        </variable>
+      </entry>
+      <entry name="Weekly Enterprise Reports">
+        <custom-widget>
+          <entry name="1">
+            <custom-report>Clients sinkholed Trending</custom-report>
+          </entry>
+          <entry name="2">
+            <custom-report>Weekly Malicious URL Cats</custom-report>
+          </entry>
+          <entry name="3">
+            <custom-report>Weekly Potential URL Cats</custom-report>
+          </entry>
+        </custom-widget>
+        <title-page>yes</title-page>
+        <variable>
+          <entry name="title">
+            <value>Weekly Trending Potential Compromise Enterprise Reports</value>
+          </entry>
+        </variable>
+      </entry>
+      <entry name="Monthly Tuning Reports">
+        <custom-widget>
+          <entry name="1">
+            <custom-report>Highest Vol Rules by Bytes</custom-report>
+          </entry>
+          <entry name="2">
+            <custom-report>Highest Vol Rules by Sessions</custom-report>
+          </entry>
+          <entry name="3">
+            <custom-report>Least Vol Rules by Bytes</custom-report>
+          </entry>
+        </custom-widget>
+        <title-page>yes</title-page>
+        <variable>
+          <entry name="title">
+            <value>Monthly Tuning Reports</value>
+          </entry>
+        </variable>
+      </entry>
+      <entry name="Daily Threats by Direction">
+        <custom-widget>
+          <entry name="1">
+            <custom-report>Daily Inbound Allowed Threats</custom-report>
+          </entry>
+          <entry name="2">
+            <custom-report>Daily Outbound Allowed Threats</custom-report>
+          </entry>
+          <entry name="3">
+            <custom-report>Daily Internal Allowd Threats</custom-report>
+          </entry>
+          <entry name="4">
+            <custom-report>Daily Inbound Denied Threats</custom-report>
+          </entry>
+          <entry name="5">
+            <custom-report>Daily Outbound Denied Threats</custom-report>
+          </entry>
+          <entry name="6">
+            <custom-report>Daily Internal Denied Threats</custom-report>
+          </entry>
+        </custom-widget>
+        <title-page>yes</title-page>
+        <variable>
+          <entry name="title">
+            <value>Daily Compromised Direction Based Reports</value>
+          </entry>
+        </variable>
+      </entry>
+      <entry name="Weekly Threats by Direction">
+        <custom-widget>
+          <entry name="1">
+            <custom-report>Weekly Inbound Allowed Threats</custom-report>
+          </entry>
+          <entry name="2">
+            <custom-report>Weekly Outbound Allowed Threats</custom-report>
+          </entry>
+          <entry name="3">
+            <custom-report>Weekly Internal Allowed Threats</custom-report>
+          </entry>
+          <entry name="4">
+            <custom-report>Weekly Inbound Denied Threats</custom-report>
+          </entry>
+          <entry name="5">
+            <custom-report>Weekly Outbound Denied Threats</custom-report>
+          </entry>
+          <entry name="6">
+            <custom-report>Weekly Internal Denied Threats</custom-report>
+          </entry>
+        </custom-widget>
+        <title-page>yes</title-page>
+        <variable>
+          <entry name="title">
+            <value>Weekly Compromise Direction Based Reports</value>
+          </entry>
+        </variable>
+      </entry>
+    </report-group>
+    <email-scheduler>
+      <entry name="Monthly Email">
+        <report-group>Monthly Tuning Reports</report-group>
+        <email-profile>Sample_Email_Profile</email-profile>
+        <recurring>
+          <disabled/>
+        </recurring>
+      </entry>
+      <entry name="Daily Enterprise Reports">
+        <report-group>Daily Enterprise Reports</report-group>
+        <email-profile>Sample_Email_Profile</email-profile>
+        <recurring>
+          <disabled/>
+        </recurring>
+      </entry>
+      <entry name="Weekly Enterprise Reports">
+        <report-group>Weekly Enterprise Reports</report-group>
+        <email-profile>Sample_Email_Profile</email-profile>
+        <recurring>
+          <disabled/>
+        </recurring>
+      </entry>
+      <entry name="Daily Threats by Direction">
+        <report-group>Daily Threats by Direction</report-group>
+        <email-profile>Sample_Email_Profile</email-profile>
+        <recurring>
+          <disabled/>
+        </recurring>
+      </entry>
+      <entry name="Weekly Threats by Direction">
+        <report-group>Weekly Threats by Direction</report-group>
+        <email-profile>Sample_Email_Profile</email-profile>
+        <recurring>
+          <disabled/>
+        </recurring>
+      </entry>
+    </email-scheduler>
+  </shared>
+  <devices>
+    <entry name="localhost.localdomain">
+      <network>
+        <interface>
+          <ethernet/>
+        </interface>
+        <profiles>
+          <monitor-profile>
+            <entry name="default">
+              <interval>3</interval>
+              <threshold>5</threshold>
+              <action>wait-recover</action>
+            </entry>
+          </monitor-profile>
+        </profiles>
+        <ike>
+          <crypto-profiles>
+            <ike-crypto-profiles>
+              <entry name="default">
+                <encryption>
+                  <member>aes-128-cbc</member>
+                  <member>3des</member>
+                </encryption>
+                <hash>
+                  <member>sha1</member>
+                </hash>
+                <dh-group>
+                  <member>group2</member>
+                </dh-group>
+                <lifetime>
+                  <hours>8</hours>
+                </lifetime>
+              </entry>
+              <entry name="Suite-B-GCM-128">
+                <encryption>
+                  <member>aes-128-cbc</member>
+                </encryption>
+                <hash>
+                  <member>sha256</member>
+                </hash>
+                <dh-group>
+                  <member>group19</member>
+                </dh-group>
+                <lifetime>
+                  <hours>8</hours>
+                </lifetime>
+              </entry>
+              <entry name="Suite-B-GCM-256">
+                <encryption>
+                  <member>aes-256-cbc</member>
+                </encryption>
+                <hash>
+                  <member>sha384</member>
+                </hash>
+                <dh-group>
+                  <member>group20</member>
+                </dh-group>
+                <lifetime>
+                  <hours>8</hours>
+                </lifetime>
+              </entry>
+            </ike-crypto-profiles>
+            <ipsec-crypto-profiles>
+              <entry name="default">
+                <esp>
+                  <encryption>
+                    <member>aes-128-cbc</member>
+                    <member>3des</member>
+                  </encryption>
+                  <authentication>
+                    <member>sha1</member>
+                  </authentication>
+                </esp>
+                <dh-group>group2</dh-group>
+                <lifetime>
+                  <hours>1</hours>
+                </lifetime>
+              </entry>
+              <entry name="Suite-B-GCM-128">
+                <esp>
+                  <encryption>
+                    <member>aes-128-gcm</member>
+                  </encryption>
+                  <authentication>
+                    <member>none</member>
+                  </authentication>
+                </esp>
+                <dh-group>group19</dh-group>
+                <lifetime>
+                  <hours>1</hours>
+                </lifetime>
+              </entry>
+              <entry name="Suite-B-GCM-256">
+                <esp>
+                  <encryption>
+                    <member>aes-256-gcm</member>
+                  </encryption>
+                  <authentication>
+                    <member>none</member>
+                  </authentication>
+                </esp>
+                <dh-group>group20</dh-group>
+                <lifetime>
+                  <hours>1</hours>
+                </lifetime>
+              </entry>
+            </ipsec-crypto-profiles>
+            <global-protect-app-crypto-profiles>
+              <entry name="default">
+                <encryption>
+                  <member>aes-128-cbc</member>
+                </encryption>
+                <authentication>
+                  <member>sha1</member>
+                </authentication>
+              </entry>
+            </global-protect-app-crypto-profiles>
+          </crypto-profiles>
+        </ike>
+        <qos>
+          <profile>
+            <entry name="default">
+              <class>
+                <entry name="class1">
+                  <priority>real-time</priority>
+                </entry>
+                <entry name="class2">
+                  <priority>high</priority>
+                </entry>
+                <entry name="class3">
+                  <priority>high</priority>
+                </entry>
+                <entry name="class4">
+                  <priority>medium</priority>
+                </entry>
+                <entry name="class5">
+                  <priority>medium</priority>
+                </entry>
+                <entry name="class6">
+                  <priority>low</priority>
+                </entry>
+                <entry name="class7">
+                  <priority>low</priority>
+                </entry>
+                <entry name="class8">
+                  <priority>low</priority>
+                </entry>
+              </class>
+            </entry>
+          </profile>
+        </qos>
+        <virtual-router>
+          <entry name="default">
+            <protocol>
+              <bgp>
+                <enable>no</enable>
+                <dampening-profile>
+                  <entry name="default">
+                    <cutoff>1.25</cutoff>
+                    <reuse>0.5</reuse>
+                    <max-hold-time>900</max-hold-time>
+                    <decay-half-life-reachable>300</decay-half-life-reachable>
+                    <decay-half-life-unreachable>900</decay-half-life-unreachable>
+                    <enable>yes</enable>
+                  </entry>
+                </dampening-profile>
+              </bgp>
+            </protocol>
+          </entry>
+        </virtual-router>
+      </network>
+      <deviceconfig>
+        <system>
+          <ip-address>192.168.255.70</ip-address>
+          <netmask>255.255.255.0</netmask>
+          <update-server>updates.paloaltonetworks.com</update-server>
+          <update-schedule>
+            <threats>
+              <recurring>
+                <weekly>
+                  <day-of-week>wednesday</day-of-week>
+                  <at>01:02</at>
+                  <action>download-only</action>
+                </weekly>
+              </recurring>
+            </threats>
+          </update-schedule>
+          <timezone>US/Pacific</timezone>
+          <service>
+            <disable-telnet>yes</disable-telnet>
+            <disable-http>yes</disable-http>
+          </service>
+          <hostname>PA-VM</hostname>
+          <default-gateway>192.168.255.1</default-gateway>
+          <dns-setting>
+            <servers>
+              <primary>8.8.8.8</primary>
+              <secondary>8.8.4.4</secondary>
+            </servers>
+          </dns-setting>
+        </system>
+        <setting>
+          <config>
+            <rematch>yes</rematch>
+          </config>
+          <management>
+            <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
+          </management>
+        </setting>
+      </deviceconfig>
+      <vsys>
+        <entry name="vsys1">
+          <application/>
+          <application-group/>
+          <zone/>
+          <service/>
+          <service-group/>
+          <schedule/>
+          <rulebase/>
+        </entry>
+      </vsys>
+    </entry>
+  </devices>
+</config>
