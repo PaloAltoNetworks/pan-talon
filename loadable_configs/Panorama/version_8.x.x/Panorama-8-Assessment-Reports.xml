@@ -324,7 +324,7 @@
             <values>
               <member>repeatcnt</member>
             </values>
-          </wildfire>
+          </panorama-wildfire>
         </type>
         <period>last-30-calendar-days</period>
         <topn>500</topn>
@@ -354,7 +354,7 @@
             <values>
               <member>repeatcnt</member>
             </values>
-          </wildfire>
+          </panorama-wildfire>
         </type>
         <period>last-30-calendar-days</period>
         <topn>500</topn>
@@ -812,7 +812,7 @@
             <values>
               <member>repeatcnt</member>
             </values>
-          </wildfire>
+          </panorama-wildfire>
         </type>
         <description>File Types coming from the Internet that have an unknown verdict and are sent to WildFire</description>
       </entry>
@@ -833,7 +833,7 @@
             <values>
               <member>repeatcnt</member>
             </values>
-          </wildfire>
+          </panorama-wildfire>
         </type>
         <description>File Types coming from the Internet that have an unknown verdict and are sent to WildFire</description>
       </entry>
@@ -855,7 +855,7 @@
             <values>
               <member>repeatcnt</member>
             </values>
-          </wildfire>
+          </panorama-wildfire>
         </type>
         <description>Internal Rules coming from-to internal that have an unknown verdict and are sent to WildFire</description>
       </entry>
@@ -1555,7 +1555,7 @@
             <values>
               <member>repeatcnt</member>
             </values>
-          </wildfire>
+          </panorama-wildfire>
         </type>
         <description>File Types from-to internal traffic that have an unknown verdict and are sent to WildFire</description>
       </entry>
@@ -1579,7 +1579,7 @@
             <values>
               <member>repeatcnt</member>
             </values>
-          </wildfire>
+          </panorama-wildfire>
         </type>
         <description>Identified Applications coming from Internal that have an unknown verdict and are sent to WildFire</description>
       </entry>
@@ -1601,7 +1601,7 @@
             <values>
               <member>repeatcnt</member>
             </values>
-          </wildfire>
+          </panorama-wildfire>
         </type>
         <description>Internal Rules coming from-to internal that have an unknown verdict and are sent to WildFire</description>
       </entry>
@@ -2706,7 +2706,7 @@ and (direction eq server-to-client) and (subtype eq vulnerability) and ((action 
             <values>
               <member>repeatcnt</member>
             </values>
-          </wildfire>
+          </panorama-wildfire>
         </type>
         <description>Files from inside uploaded to WildFire</description>
       </entry>
@@ -2727,7 +2727,7 @@ and (direction eq server-to-client) and (subtype eq vulnerability) and ((action 
             <values>
               <member>repeatcnt</member>
             </values>
-          </wildfire>
+          </panorama-wildfire>
         </type>
       </entry>
       <entry name="Outbound Rules to WildFire">
@@ -2748,7 +2748,7 @@ and (direction eq server-to-client) and (subtype eq vulnerability) and ((action 
             <values>
               <member>repeatcnt</member>
             </values>
-          </wildfire>
+          </panorama-wildfire>
         </type>
       </entry>
       <entry name="Outbound Allowd Spyware Rule">
@@ -4937,7 +4937,7 @@ and (direction eq server-to-client) and (subtype eq vulnerability) and ((action 
                   <action>download-and-install</action>
                 </every-min>
               </recurring>
-            </wildfire>
+            </panorama-wildfire>
           </update-schedule>
           <snmp-setting>
             <access-setting>
@@ -5032,7 +5032,7 @@ Log off immediately if you are not an authorized user.</login-banner>
             </file-size-limit>
             <report-benign-file>yes</report-benign-file>
             <report-grayware-file>yes</report-grayware-file>
-          </wildfire>
+          </panorama-wildfire>
           <config>
             <rematch>yes</rematch>
           </config>
